@@ -1,4 +1,5 @@
 const modelProduct = require("../models/modelProduct");
+const fs = require("fs")
 
 exports.read = async (req, res) => {
   try {
@@ -26,10 +27,15 @@ exports.list = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    console.log(req.body);
-    const createProduct = await modelProduct(req.body).save();
 
+    var data = req.body
+    if (req.file) {
+      data.file = req.file.filename;
+    }
+
+    const createProduct = await modelProduct(data).save();
     res.send(createProduct);
+
   } catch (err) {
     console.log(err);
     res.status(500).send("Server Error");
@@ -54,6 +60,16 @@ exports.remove = async (req, res) => {
   try {
     const id = req.params.id;
     const removed = await modelProduct.findOneAndDelete({ _id: id }).exec();
+
+    if (removed?.file) {
+      await fs.unlink("./uploads/" + removed.file , (err) => {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log("Remove success") 
+        }
+      })
+    }
 
     res.send(removed);
   } catch (err) {
