@@ -16,6 +16,7 @@ const FormEditProduct = () => {
         datail: '',
         price: ''
     })
+  const [fildold, setFileOld] = useState()
 
 
 
@@ -29,14 +30,22 @@ const FormEditProduct = () => {
         read(id)
             .then((res) => {
             setData(res.data)
+            setFileOld(res.data.file)
         })
     }
 
   const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "file") {
+      setData({
+        ...data,
+        [e.target.name]: e.target.files[0],
+      });
+    } else {
+      setData({
+        ...data,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -58,24 +67,30 @@ const FormEditProduct = () => {
           type="text"
           name="name"
           onChange={(e) => handleChange(e)}
-                  placeholder="Name"
-                  value={data.name}
+          placeholder="Name"
+          value={data.name}
         ></input>
         <br></br>
         <input
           type="text"
           name="detail"
           onChange={(e) => handleChange(e)}
-                  placeholder="Detail"
-                  value={data.detail}
+          placeholder="Detail"
+          value={data.detail}
         ></input>
         <br></br>
         <input
           type="text"
           name="price"
           onChange={(e) => handleChange(e)}
-                  placeholder="Price"
-                  value={data.price}
+          placeholder="Price"
+          value={data.price}
+        ></input>
+        <br></br>
+        <input
+          type="file"
+          name="file"
+          onChange={(e) => handleChange(e)}
         ></input>
         <br></br>
         <button>Submit</button>

@@ -17,16 +17,29 @@ const FormProduct = () => {
   };
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+
+    if (e.target.name === "file") {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.files[0],
+      });
+    } else {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    create(form)
-      .then(res => {
+    const formWithImagaData = new FormData()
+    for (const key in form) {
+      formWithImagaData.append(key, form[key])
+    }
+
+    create(formWithImagaData)
+      .then((res) => {
         console.log(res);
         loadData();
       })
@@ -45,7 +58,7 @@ const FormProduct = () => {
   return (
     <div>
       FormProduct
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input
           type="text"
           name="name"
@@ -65,6 +78,12 @@ const FormProduct = () => {
           name="price"
           onChange={(e) => handleChange(e)}
           placeholder="Price"
+        ></input>
+        <br></br>
+        <input
+          type="file"
+          name="file"
+          onChange={(e) => handleChange(e)}
         ></input>
         <br></br>
         <button>Submit</button>
