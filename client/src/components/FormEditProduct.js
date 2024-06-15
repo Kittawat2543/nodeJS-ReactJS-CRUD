@@ -16,14 +16,12 @@ const FormEditProduct = () => {
         datail: '',
         price: ''
     })
-  const [fildold, setFileOld] = useState()
+  const [fileold, setFileOld] = useState()
 
 
 
     useEffect(() => {
         loadData(params.id)
-
-
     }, [])
 
     const loadData = async (id) => {
@@ -51,18 +49,24 @@ const FormEditProduct = () => {
   const handleSubmit = async (e) => {
       e.preventDefault();
       console.log(data)
-    update(params.id, data)
-      .then((res) => {
-          console.log(res);
-          navigate("/")
-      })
-      .catch((err) => console.log(err));
+      console.log(fileold)
+        const formWithImagaData = new FormData();
+        for (const key in data) {
+          formWithImagaData.append(key, data[key]);
+        }
+          formWithImagaData.append("fileold", fileold)
+          update(params.id, formWithImagaData)
+            .then((res) => {
+              console.log(res);
+              navigate("/");
+            })
+            .catch((err) => console.log(err));
   };
 
   return (
     <div>
       FormEditProduct
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input
           type="text"
           name="name"

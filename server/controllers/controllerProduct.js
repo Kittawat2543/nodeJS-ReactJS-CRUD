@@ -1,5 +1,5 @@
 const modelProduct = require("../models/modelProduct");
-const fs = require("fs")
+const fs = require("fs");
 
 exports.read = async (req, res) => {
   try {
@@ -27,15 +27,13 @@ exports.list = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-
-    var data = req.body
+    var data = req.body;
     if (req.file) {
       data.file = req.file.filename;
     }
 
     const createProduct = await modelProduct(data).save();
     res.send(createProduct);
-
   } catch (err) {
     console.log(err);
     res.status(500).send("Server Error");
@@ -45,10 +43,24 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const id = req.params.id;
-    const updated = await modelProduct
-      .findOneAndUpdate({ _id: id }, req.body, { new: true })
-      .exec();
+    var newData = req.body;
+    // console.log(newData);
 
+
+    if (typeof req.file !== "undefined") {
+      newData.file = req.file.filename;
+      await fs.unlink("./uploads/" + newData.fileold, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Remove success");
+        }
+      });
+    }
+
+    const updated = await modelProduct
+      .findOneAndUpdate({ _id: id }, newData , { new: true })
+      .exec();
     res.send(updated);
   } catch (err) {
     console.log(err);
@@ -62,13 +74,13 @@ exports.remove = async (req, res) => {
     const removed = await modelProduct.findOneAndDelete({ _id: id }).exec();
 
     if (removed?.file) {
-      await fs.unlink("./uploads/" + removed.file , (err) => {
+      await fs.unlink("./uploads/" + removed.file, (err) => {
         if (err) {
-          console.log(err)
+          console.log(err);
         } else {
-          console.log("Remove success") 
+          console.log("Remove success");
         }
-      })
+      });
     }
 
     res.send(removed);

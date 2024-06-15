@@ -17,7 +17,6 @@ const FormProduct = () => {
   };
 
   const handleChange = (e) => {
-
     if (e.target.name === "file") {
       setForm({
         ...form,
@@ -33,9 +32,9 @@ const FormProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formWithImagaData = new FormData()
+    const formWithImagaData = new FormData();
     for (const key in form) {
-      formWithImagaData.append(key, form[key])
+      formWithImagaData.append(key, form[key]);
     }
 
     create(formWithImagaData)
@@ -95,6 +94,7 @@ const FormProduct = () => {
             <th scope="col">Name</th>
             <th scope="col">Detail</th>
             <th scope="col">Price</th>
+            <th scope="col">File</th>
             <th scope="col">Delete</th>
             <th scope="col">Edit</th>
           </tr>
@@ -107,12 +107,10 @@ const FormProduct = () => {
                   <td>{item.name}</td>
                   <td>{item.detail}</td>
                   <td>{item.price}</td>
+                  <td>{item.file}</td>
                   <td onClick={() => handleRemove(item._id)}>Delete</td>
-                <td>
-                  <Link to={'/edit/'+ item._id}>
-                    Edit
-                  
-                  </Link>
+                  <td>
+                    <Link to={"/edit/" + item._id}>Edit</Link>
                   </td>
                 </tr>
               ))
