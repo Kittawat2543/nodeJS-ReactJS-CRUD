@@ -2,6 +2,7 @@ import React, { useEffect , useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { read, update } from '../functions/product'
+import { Box, TextField, Button } from "@mui/material";
 
 
 
@@ -67,37 +68,61 @@ const FormEditProduct = () => {
     <div>
       FormEditProduct
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input
-          type="text"
-          name="name"
-          onChange={(e) => handleChange(e)}
-          placeholder="Name"
-          value={data.name}
-        ></input>
-        <br></br>
-        <input
-          type="text"
-          name="detail"
-          onChange={(e) => handleChange(e)}
-          placeholder="Detail"
-          value={data.detail}
-        ></input>
-        <br></br>
-        <input
-          type="text"
-          name="price"
-          onChange={(e) => handleChange(e)}
-          placeholder="Price"
-          value={data.price}
-        ></input>
-        <br></br>
-        <input
-          type="file"
-          name="file"
-          onChange={(e) => handleChange(e)}
-        ></input>
-        <br></br>
-        <button>Submit</button>
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Name"
+            name="name"
+            onChange={(e) => handleChange(e)}
+            value={data.name}
+            variant="outlined"
+            margin="dense"
+            focused
+          />
+        </div>
+
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Detail"
+            name="detail"
+            onChange={(e) => handleChange(e)}
+            value={data.detail}
+            variant="outlined"
+            margin="dense"
+            focused
+          />
+        </div>
+
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Price"
+            name="price"
+            onChange={(e) => handleChange(e)}
+            value={data.price}
+            variant="outlined"
+            margin="dense"
+            focused
+          />
+        </div>
+
+        <div>
+          <TextField
+            type="file"
+            id="outlined-basic"
+            label="File"
+            name="file"
+            onChange={(e) => handleChange(e)}
+            variant="outlined"
+            margin="dense"
+            focused
+          />
+        </div>
+
+        <Button variant="contained" color="success" type="submit">
+          Submit Change
+        </Button>
       </form>
     </div>
   );
