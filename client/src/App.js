@@ -8,6 +8,9 @@ import SideBar from "./layout/SideBar";
 
 import FormProduct from './components/FormProduct';
 import FormEditProduct from './components/FormEditProduct';
+import Register from './components/pages/auth/Register';
+import Login from './components/pages/auth/Login';
+
 
 function App() {
 
@@ -16,6 +19,11 @@ function App() {
     <BrowserRouter>
       <>
         <CssBaseline />
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+
         <div className="app">
           <SideBar />
           <main className="content">

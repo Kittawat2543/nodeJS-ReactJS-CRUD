@@ -24,9 +24,8 @@ exports.register = async (req, res) => {
     user.password = await bcrypt.hash(password, salt);
     // save
     await user.save();
-    res.send("Register success");
+     res.status(200).send("Register success");
 
-    res.send(req.body);
   } catch (err) {
     console.log(err);
     res.status(500).send("Register Error");
