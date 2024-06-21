@@ -57,9 +57,10 @@ export default function Login() {
       
       login(form)
         .then(res => {
-            // res ไม่มาาาาาาาาาาา
-              console.log(res)
-          }).catch(err => {
+          console.log(res)
+          alert(res.data)
+        })
+        .catch(err => {
           console.log(err)
       })
 

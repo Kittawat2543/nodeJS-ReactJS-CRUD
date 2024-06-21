@@ -24,7 +24,8 @@ exports.register = async (req, res) => {
     user.password = await bcrypt.hash(password, salt);
     // save
     await user.save();
-     res.status(200).send("Register success");
+    res.send("Register Success!!");
+    // console.log(res)
 
   } catch (err) {
     console.log(err);
@@ -49,6 +50,7 @@ exports.login = async (req, res) => {
       var payload = {
         user: {
           name: user.name,
+          role: user.role,
         },
       };
 

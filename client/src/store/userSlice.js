@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: 'Not North',
+  value: "Not North",
+  user: [],
 };
 
 export const userSlice = createSlice({
@@ -10,6 +11,7 @@ export const userSlice = createSlice({
   reducers: {
     login: (state) => {
       state.value = "User login";
+      state.user = "hello User";
     },
     logout: (state) => {
       state.value = "User logout";
