@@ -17,9 +17,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 //function
 import { login } from "../../../functions/auth";
+import { useNavigate } from "react-router-dom"
 
-
-
+import {useDispatch} from "react-redux"
+import { login as loginRedux } from "../../../store/userSlice";
 
 
 function Copyright(props) {
@@ -45,6 +46,11 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Login() {
+  const navi = useNavigate()
+  const dispatch = useDispatch()
+
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -59,12 +65,27 @@ export default function Login() {
         .then(res => {
           console.log(res)
           alert(res.data)
+          dispatch(loginRedux({
+            name: res.data.payload.user.name,
+            role: res.data.payload.user.role,
+            token: res.data.token
+          }))
+          localStorage.setItem('token',res.data.token)
+          roleRedirect(res.data.payload.user.role)
         })
         .catch(err => {
           console.log(err)
       })
-
   };
+
+
+  const roleRedirect = (role) => {
+    if (role === "admin") {
+      navi("/admin/index")
+    } else {
+      navi("/user/index");
+    }
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>

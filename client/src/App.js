@@ -24,9 +24,31 @@ import HomePageUser from "./components/pages/user/HomePageUser";
 import AdminRoute from "./routes/AdminRoute";
 import UserRoute from "./routes/UserRoute";
 
+//function
+import { currentUser } from "./functions/auth";
+
+import { useDispatch } from "react-redux";
+import { login } from "./store/userSlice";
 
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  const idToken = localStorage.getItem("token")
+  console.log("token", idToken)
+  currentUser(idToken)
+    .then(res => {
+      console.log(res)
+      dispatch(login({
+        name: res.data.name,
+        role: res.data.role,
+        token: idToken,
+      }))
+    }).catch((err) => {
+    console.log(err)
+  })
+
   return (
     <BrowserRouter>
       <>
@@ -49,6 +71,14 @@ function App() {
 
         {/* admin */}
         <Route
+            path="/admin/index"
+            element={
+              <AdminRoute>
+                <HomePageAdmin />
+              </AdminRoute>
+            }
+          />
+        <Route
             path="/admin/viewtable"
             element={
               <AdminRoute>
@@ -56,6 +86,7 @@ function App() {
               </AdminRoute>
             }
           />
+
 
         <Route
             path="/edit/:id"
