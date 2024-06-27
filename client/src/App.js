@@ -26,9 +26,11 @@ import UserRoute from "./routes/UserRoute";
 
 //function
 import { currentUser } from "./functions/auth";
-
 import { useDispatch } from "react-redux";
 import { login } from "./store/userSlice";
+
+import Notfound404 from "./components/pages/Notfound404";
+
 
 
 function App() {
@@ -58,9 +60,15 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="*"
+            element={
+              <Notfound404 text="The page you’re looking for doesn’t exist." />
+            }
+          />
 
-        {/* user */}
-        <Route
+          {/* user */}
+          <Route
             path="/user/index"
             element={
               <UserRoute>
@@ -69,8 +77,8 @@ function App() {
             }
           />
 
-        {/* admin */}
-        <Route
+          {/* admin */}
+          <Route
             path="/admin/index"
             element={
               <AdminRoute>
@@ -78,7 +86,7 @@ function App() {
               </AdminRoute>
             }
           />
-        <Route
+          <Route
             path="/admin/viewtable"
             element={
               <AdminRoute>
@@ -87,15 +95,14 @@ function App() {
             }
           />
 
-
-        <Route
+          <Route
             path="/edit/:id"
             element={
               <AdminRoute>
                 <FormEditProduct />
               </AdminRoute>
             }
-          /> 
+          />
         </Routes>
       </>
     </BrowserRouter>
