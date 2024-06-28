@@ -89,7 +89,7 @@ const SideBar = () => {
                 </Box>
               )}
 
-              <Link to="/admin" className="menu-bars">
+              <Link to="/admin/index" className="menu-bars">
                 <MenuItem icon={<HomeOutlinedIcon />}>Dashboard</MenuItem>
               </Link>
 

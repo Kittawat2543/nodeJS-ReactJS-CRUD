@@ -16,6 +16,7 @@ import Login from "./components/pages/auth/Login";
 
 // admin
 import HomePageAdmin from "./components/pages/admin/HomePageAdmin";
+import ManageUser from "./components/pages/admin/ManageUser";
 
 // user
 import HomePageUser from "./components/pages/user/HomePageUser";
@@ -61,14 +62,16 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={
-            <>
-            <ResponsiveAppBar />
-            <h1>HOME </h1>
-            </>
+          <Route
+            path="/"
+            element={
+              <>
+                <ResponsiveAppBar />
+                <h1>HOME </h1>
+              </>
+            }
+          />
 
-          } />
-          
           <Route
             path="*"
             element={
@@ -95,6 +98,16 @@ function App() {
               </AdminRoute>
             }
           />
+
+          <Route
+            path="/admin/manage"
+            element={
+              <AdminRoute>
+                <ManageUser />
+              </AdminRoute>
+            }
+          />
+
           <Route
             path="/admin/viewtable"
             element={
