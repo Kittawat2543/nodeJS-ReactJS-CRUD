@@ -30,6 +30,7 @@ import { useDispatch } from "react-redux";
 import { login } from "./store/userSlice";
 
 import Notfound404 from "./components/pages/Notfound404";
+import ResponsiveAppBar from "./layout/ResponsiveAppBar";
 
 
 
@@ -60,6 +61,14 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={
+            <>
+            <ResponsiveAppBar />
+            <h1>HOME </h1>
+            </>
+
+          } />
+          
           <Route
             path="*"
             element={
