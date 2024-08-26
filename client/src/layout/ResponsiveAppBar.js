@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 
 import { Link } from "react-router-dom";
 
@@ -37,11 +36,6 @@ const pages = [
     icon: "",
     to: "/contract",
   },
-  {
-    title: "Roitai",
-    icon: "",
-    to: "/roitai",
-  },
 ];
 const authen = [
   {
@@ -56,11 +50,6 @@ const authen = [
   },
 ];
 const settings = [
-  {
-    title: "Profile",
-    icon: "",
-    to: "/profile",
-  },
   {
     title: "Logout",
     icon: "",
@@ -237,7 +226,7 @@ function ResponsiveAppBar() {
           {/* /Menu Right Full */}
 
           {/* User Menu */}
-          {user.user.length != 0 && (
+          {user.user.length !== 0 && (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -264,7 +253,7 @@ function ResponsiveAppBar() {
                   <MenuItem
                     key={index}
                     onClick={
-                      setting.title == "Logout"
+                      setting.title === "Logout"
                         ? handleLogout
                         : handleCloseUserMenu
                     }

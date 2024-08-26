@@ -2,7 +2,7 @@ import React, { useEffect , useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { read, update } from '../functions/product'
-import { Box, TextField, Button } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 
 
 
@@ -59,7 +59,7 @@ const FormEditProduct = () => {
           update(params.id, formWithImagaData)
             .then((res) => {
               console.log(res);
-              navigate("/");
+              navigate("/admin/viewtable");
             })
             .catch((err) => console.log(err));
   };

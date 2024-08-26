@@ -13,14 +13,14 @@ const {
 const { auth } = require("../middleware/middlewareAuth");
 const { upload } = require("../middleware/middlewareUpload")
 
-router.get("/product", list);
+router.get("/product", auth, list);
 
-router.get("/product/:id", read);
+router.get("/product/:id", auth, read);
 
-router.post("/product", upload, create);
+router.post("/product", auth, upload, create);
 
-router.put("/product/:id", upload, update);
+router.put("/product/:id", auth, upload, update);
 
-router.delete("/product/:id", remove);
+router.delete("/product/:id", auth, remove);
 
 module.exports = router;

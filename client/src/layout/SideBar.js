@@ -4,17 +4,13 @@ import {
   Menu,
   MenuItem,
   SubMenu,
-  SidebarFooter,
+
 } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme, Badge } from "@mui/material";
+import { Box, IconButton, Typography} from "@mui/material";
 import { Link } from "react-router-dom";
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import TableViewIcon from '@mui/icons-material/TableView';
@@ -97,17 +93,17 @@ const SideBar = () => {
                 <Link to={"/admin/viewtable"} className="menu-bars">
                   <MenuItem icon={<TableViewIcon />}> Table</MenuItem>
                 </Link>
-                <MenuItem icon={<BarChartOutlinedIcon />}>
+                {/* <MenuItem icon={<BarChartOutlinedIcon />}>
                   {" "}
                   Line charts
-                </MenuItem>
+                </MenuItem> */}
               </SubMenu>
 
               <SubMenu label="Manage" icon={<PeopleOutlinedIcon />}>
                 <Link to={"/admin/manage"} className="menu-bars">
                   <MenuItem>User</MenuItem>
                 </Link>
-                <MenuItem> Admin</MenuItem>
+                {/* <MenuItem> Admin</MenuItem> */}
               </SubMenu>
             </Menu>
 
@@ -118,7 +114,7 @@ const SideBar = () => {
                 marginTop: "32px",
               }}
             >
-              <Typography
+              {/* <Typography
                 variant="body2"
                 fontWeight={600}
                 style={{
@@ -127,13 +123,13 @@ const SideBar = () => {
                 }}
               >
                 Extra
-              </Typography>
+              </Typography> */}
             </div>
 
-            <Menu>
+            {/* <Menu>
               <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
               <MenuItem icon={<ReceiptOutlinedIcon />}>Documentation</MenuItem>
-            </Menu>
+            </Menu> */}
           </div>
         </div>
       </Sidebar>

@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 //function
 import { register } from "../../../functions/auth";
+import { useNavigate } from "react-router-dom"
+
 
 function Copyright(props) {
   return (
@@ -39,6 +41,9 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Register() {
+  const navi = useNavigate()
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -53,11 +58,18 @@ export default function Register() {
       .then(res => {
         console.log(res)
         alert(res.data)
+        isExist(res)
       })
       .catch(err => {
         console.log(err);
       });
   };
+
+  const isExist = (res) => {
+    if (res.data === "Register Success!!") {
+      navi("/login")
+    }
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>

@@ -1,7 +1,7 @@
 const modelUser = require("../models/modelUser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { token } = require("morgan");
+
 
 exports.register = async (req, res) => {
   try {
@@ -72,11 +72,11 @@ exports.currentUser = async (req, res) => {
   try {
     console.log("currentUser", req.user);
     const user = await modelUser.findOne({ name: req.user.name })
-    .select('-password')
-    .exec()
-    
+      .select('-password')
+      .exec()
+
     res.send(user)
-    
+
   } catch (err) {
     console.log(err)
     res.status(500).send("currentUser Error");
